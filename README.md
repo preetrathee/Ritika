@@ -8,23 +8,21 @@ This repo is a single-page site you can host with GitHub Pages:
 
 ## Add your photos
 
-Drop your real images into `assets/` using these names.
-Recommended: use `.jpg` for everything (fast + simplest).
+Put your images in `assets/` and name them like:
 
-- `assets/her-1.jpg`
-- `assets/her-2.jpg`
-- `assets/her-3.jpg`
-- `assets/her.jpg`
-- `assets/mine.jpg`
-- `assets/us.jpg`
+- `assets/1.jpg`, `assets/2.jpg`, `assets/3.jpg`, …
 
-Optional gallery (add as many as you want; missing ones stay as placeholders):
+This page uses:
 
-- `assets/cutie-01.jpg` … `assets/cutie-30.jpg`
+- Collage: `1.jpg`, `2.jpg`, `3.jpg`
+- “Yes” reveal: `4.jpg`, `5.jpg`, `6.jpg`
+- Gallery: keeps loading `1.jpg`, `2.jpg`, … until it can’t find more
 
-The site ships with a placeholder image; `script.js` automatically swaps to your real files when they exist.
+If you don’t want duplicates (because collage/reveal already use 1–6), open:
 
-If you keep non-`.jpg` extensions without editing `index.html`, open the site with `?tryExts=1` to make it try `.png`/`.webp` too (slower).
+- `?start=7`
+
+Tip: keep everything as `.jpg` for best loading speed.
 
 ## Customize text
 

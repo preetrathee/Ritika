@@ -165,7 +165,7 @@ async function loadDataSrcImages() {
       const result = await setFirstWorkingSrc(img, desired);
       const tile = img.closest(".tile");
       if (tile && !result.ok) {
-        tile.classList.add("tile--missing");
+        tile.remove();
         return;
       }
 
@@ -204,6 +204,59 @@ function styleGalleryWall() {
     const y = (Math.random() * 8 - 4).toFixed(1);
     tile.style.setProperty("--r", `${rotation}deg`);
     tile.style.setProperty("--y", `${y}px`);
+  }
+}
+
+async function buildGalleryTiles() {
+  const wall = document.getElementById("photoWall");
+  if (!wall) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const start = Math.max(1, Math.min(200, Number(params.get("start") ?? 1) || 1));
+  const max = Math.max(1, Math.min(200, Number(params.get("max") ?? 200) || 200));
+  const stopAfter = Math.max(
+    1,
+    Math.min(50, Number(params.get("stopAfter") ?? 8) || 8),
+  );
+
+  wall.textContent = "";
+
+  let misses = 0;
+  let found = 0;
+
+  for (let i = start; i <= max; i += 1) {
+    const src = `assets/${i}.jpg`;
+
+    try {
+      // eslint-disable-next-line no-await-in-loop
+      await loadImage(src);
+      misses = 0;
+      found += 1;
+    } catch {
+      misses += 1;
+      if (found > 0 && misses >= stopAfter) break;
+      continue;
+    }
+
+    const tile = document.createElement("button");
+    tile.type = "button";
+    tile.className = "tile";
+    tile.setAttribute("data-zoom", "");
+    tile.dataset.index = String(i);
+
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = `Cutie photo ${String(i).padStart(2, "0")}`;
+    img.loading = "lazy";
+    img.decoding = "async";
+
+    const tag = document.createElement("span");
+    tag.className = "tile__tag";
+    tag.textContent = String(i).padStart(2, "0");
+
+    tile.appendChild(img);
+    tile.appendChild(tag);
+    wall.appendChild(tile);
   }
 }
 
@@ -248,8 +301,8 @@ function wireLightbox() {
     if (!img) return;
     if (img.hasAttribute("data-src")) return;
 
-    const tag = tile.querySelector(".tile__tag")?.textContent?.trim();
-    open(img, tag ? `Cutie photo ${tag}` : "Photo");
+    const tag = tile.dataset.index || tile.querySelector(".tile__tag")?.textContent?.trim();
+    open(img, tag ? `Cutie photo ${String(tag).padStart(2, "0")}` : "Photo");
   });
 
   document.addEventListener("keydown", (event) => {
@@ -260,14 +313,16 @@ function wireLightbox() {
     const img = active.querySelector("img");
     if (!img) return;
     if (img.hasAttribute("data-src")) return;
-    const tag = active.querySelector(".tile__tag")?.textContent?.trim();
-    open(img, tag ? `Cutie photo ${tag}` : "Photo");
+    const tag = active.dataset.index || active.querySelector(".tile__tag")?.textContent?.trim();
+    open(img, tag ? `Cutie photo ${String(tag).padStart(2, "0")}` : "Photo");
   });
 }
 
 wireNoButton();
 wireYesButton();
 applyPersonalizationFromURL();
-styleGalleryWall();
+buildGalleryTiles().then(() => {
+  styleGalleryWall();
+});
 wireLightbox();
 loadDataSrcImages();

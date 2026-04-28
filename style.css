@@ -171,6 +171,18 @@ body {
   color: var(--muted);
 }
 
+.ask__love {
+  margin: 16px 0 0;
+  color: rgba(255, 255, 255, 0.84);
+  line-height: 1.55;
+}
+
+.ask__love2 {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+}
+
 .buttonZone {
   position: relative;
   min-height: 64px;
@@ -372,7 +384,7 @@ body {
   margin-top: 18px;
   display: grid;
   gap: 16px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   align-items: start;
 }
 
@@ -391,10 +403,6 @@ body {
   object-fit: cover;
   border-radius: 14px;
   background: rgba(0, 0, 0, 0.12);
-}
-
-.us__photo--together img {
-  aspect-ratio: 16 / 9;
 }
 
 .us__photo--together {
@@ -436,10 +444,6 @@ body {
 
   .polaroid--c {
     left: 10%;
-  }
-
-  .us {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .us__photo--together {
