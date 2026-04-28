@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>For My Cutie</title>
+    <meta
+      name="description"
+      content="A tiny yes/no page with photos, made for GitHub Pages."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="hero">
+        <div class="hero__copy">
+          <p class="badge">Made for GitHub Pages</p>
+          <h1 class="title">
+            Hey <span class="title__name" id="nameTarget">Cutie</span>
+          </h1>
+          <p class="subtitle">
+            I made a tiny page just for you. Scroll a little… then answer the
+            question.
+          </p>
+        </div>
+
+        <div class="collage" aria-label="Photo collage">
+          <figure class="polaroid polaroid--a">
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/her-1.jpg"
+              alt="Her photo 1"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>my favorite</figcaption>
+          </figure>
+          <figure class="polaroid polaroid--b">
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/her-2.jpg"
+              alt="Her photo 2"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>smile check</figcaption>
+          </figure>
+          <figure class="polaroid polaroid--c">
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/her-3.jpg"
+              alt="Her photo 3"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>always cute</figcaption>
+          </figure>
+        </div>
+      </header>
+
+      <section class="card ask" aria-labelledby="askTitle">
+        <h2 id="askTitle" class="ask__title">Will you go out with me?</h2>
+        <p class="ask__hint">Choose wisely.</p>
+
+        <div class="buttonZone" id="buttonZone">
+          <button class="btn btn--yes" id="yesBtn" type="button">Yes</button>
+          <button class="btn btn--no" id="noBtn" type="button">No</button>
+        </div>
+
+        <details class="details">
+          <summary>How to add our photos</summary>
+          <p>
+            Replace these files with your real images (same names) and push to
+            GitHub:
+          </p>
+          <ul>
+            <li>
+              <code>assets/her-1.jpg</code>, <code>assets/her-2.jpg</code>,
+              <code>assets/her-3.jpg</code>
+            </li>
+            <li>
+              <code>assets/her.jpg</code>, <code>assets/mine.jpg</code> and
+              <code>assets/us.jpg</code>
+            </li>
+            <li>
+              Optional gallery: <code>assets/cutie-01.jpg</code> …
+              <code>assets/cutie-30.jpg</code>
+            </li>
+          </ul>
+          <p class="small">
+            Tip: best is <code>.jpg</code> (fastest). If you use
+            <code>.png</code>/<code>.webp</code>, either rename to
+            <code>.jpg</code> or update the filenames in <code>index.html</code>.
+          </p>
+        </details>
+      </section>
+
+      <section class="card gallery" aria-labelledby="galleryTitle">
+        <div class="gallery__head">
+          <h2 id="galleryTitle" class="gallery__title">The Cutie Gallery</h2>
+          <p class="gallery__hint">
+            Add up to 30 photos in <code>assets/</code> and they’ll appear here.
+            Click a photo to zoom.
+          </p>
+        </div>
+
+        <div class="photoWall" id="photoWall">
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-01.jpg"
+              alt="Cutie photo 01"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">01</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-02.jpg"
+              alt="Cutie photo 02"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">02</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-03.jpg"
+              alt="Cutie photo 03"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">03</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-04.jpg"
+              alt="Cutie photo 04"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">04</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-05.jpg"
+              alt="Cutie photo 05"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">05</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-06.jpg"
+              alt="Cutie photo 06"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">06</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-07.jpg"
+              alt="Cutie photo 07"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">07</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-08.jpg"
+              alt="Cutie photo 08"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">08</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-09.jpg"
+              alt="Cutie photo 09"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">09</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-10.jpg"
+              alt="Cutie photo 10"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">10</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-11.jpg"
+              alt="Cutie photo 11"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">11</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-12.jpg"
+              alt="Cutie photo 12"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">12</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-13.jpg"
+              alt="Cutie photo 13"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">13</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-14.jpg"
+              alt="Cutie photo 14"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">14</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-15.jpg"
+              alt="Cutie photo 15"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">15</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-16.jpg"
+              alt="Cutie photo 16"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">16</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-17.jpg"
+              alt="Cutie photo 17"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">17</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-18.jpg"
+              alt="Cutie photo 18"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">18</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-19.jpg"
+              alt="Cutie photo 19"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">19</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-20.jpg"
+              alt="Cutie photo 20"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">20</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-21.jpg"
+              alt="Cutie photo 21"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">21</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-22.jpg"
+              alt="Cutie photo 22"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">22</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-23.jpg"
+              alt="Cutie photo 23"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">23</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-24.jpg"
+              alt="Cutie photo 24"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">24</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-25.jpg"
+              alt="Cutie photo 25"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">25</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-26.jpg"
+              alt="Cutie photo 26"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">26</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-27.jpg"
+              alt="Cutie photo 27"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">27</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-28.jpg"
+              alt="Cutie photo 28"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">28</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-29.jpg"
+              alt="Cutie photo 29"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">29</span>
+          </button>
+          <button class="tile" type="button" data-zoom>
+            <img
+              src="assets/placeholder.svg"
+              data-src="assets/cutie-30.jpg"
+              alt="Cutie photo 30"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="tile__tag">30</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="card reveal" id="reveal" hidden aria-live="polite">
+        <h2 class="reveal__title">Okay… now look at us.</h2>
+        <p class="reveal__hint">This only shows after “Yes”.</p>
+
+        <div class="us">
+          <figure class="us__photo">
+            <img
+              id="herImg"
+              src="assets/placeholder.svg"
+              data-src="assets/her.jpg"
+              alt="Her photo"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>you</figcaption>
+          </figure>
+
+          <figure class="us__photo">
+            <img
+              id="mineImg"
+              src="assets/placeholder.svg"
+              data-src="assets/mine.jpg"
+              alt="My photo"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>me</figcaption>
+          </figure>
+
+          <figure class="us__photo us__photo--together">
+            <img
+              id="usImg"
+              src="assets/placeholder.svg"
+              data-src="assets/us.jpg"
+              alt="Us together"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>us</figcaption>
+          </figure>
+        </div>
+
+        <p class="reveal__footer" id="customMessage">
+          If you said yes, I owe you a proper date.
+        </p>
+      </section>
+
+      <footer class="footer">
+        <p class="small">
+          Built with plain HTML/CSS/JS. Hosted on GitHub Pages.
+        </p>
+      </footer>
+    </main>
+
+    <div class="lightbox" id="lightbox" hidden aria-hidden="true">
+      <button class="lightbox__backdrop" type="button" id="lightboxClose">
+        <span class="srOnly">Close</span>
+      </button>
+      <figure class="lightbox__content" role="dialog" aria-modal="true">
+        <img
+          id="lightboxImg"
+          src="assets/placeholder.svg"
+          alt="Zoomed photo"
+          decoding="async"
+        />
+        <figcaption class="lightbox__caption" id="lightboxCaption"></figcaption>
+      </figure>
+    </div>
+  </body>
+</html>
