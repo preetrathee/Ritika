@@ -46,6 +46,126 @@ body {
   overflow-x: hidden;
 }
 
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background:
+    radial-gradient(900px 560px at 15% 10%, rgba(140, 70, 255, 0.32), transparent 60%),
+    radial-gradient(840px 520px at 85% 30%, rgba(0, 200, 255, 0.22), transparent 55%),
+    radial-gradient(720px 560px at 55% 95%, rgba(57, 224, 143, 0.16), transparent 55%),
+    rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(10px);
+}
+
+.gate[hidden] {
+  display: none;
+}
+
+.gate__panel {
+  width: min(640px, 100%);
+  border-radius: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.28));
+  box-shadow: 0 30px 120px rgba(0, 0, 0, 0.7);
+  padding: 22px 18px 18px;
+}
+
+.gate__kicker {
+  margin: 0 0 10px;
+  display: inline-flex;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.gate__title {
+  margin: 0;
+  letter-spacing: -0.03em;
+  font-size: clamp(24px, 3.2vw, 34px);
+}
+
+.gate__subtitle {
+  margin: 10px 0 14px;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.5;
+}
+
+.gate__hintName {
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.gate__form {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.gate__label {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.gate__input {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.22);
+  color: rgba(255, 255, 255, 0.92);
+  padding: 12px 14px;
+  font-size: 16px;
+  outline: none;
+}
+
+.gate__input:focus {
+  border-color: rgba(34, 211, 238, 0.45);
+  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.14);
+}
+
+.gate__btn {
+  justify-self: start;
+  padding-inline: 22px;
+}
+
+.gate__error {
+  margin: 2px 0 0;
+  min-height: 18px;
+  color: rgba(255, 84, 118, 0.95);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.gate__panel.isWrong {
+  animation: gateShake 240ms ease both;
+}
+
+@keyframes gateShake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-8px);
+  }
+  50% {
+    transform: translateX(8px);
+  }
+  75% {
+    transform: translateX(-6px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .wrap {
   width: min(var(--max), calc(100% - 32px));
   margin: 0 auto;

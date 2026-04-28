@@ -18,7 +18,30 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <main class="wrap">
+    <div class="gate" id="gate" aria-hidden="false">
+      <div class="gate__panel" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+        <p class="gate__kicker">Private entry</p>
+        <h1 class="gate__title" id="gateTitle">What’s your name?</h1>
+        <p class="gate__subtitle">Type it and enter. (Hint: it’s <span class="gate__hintName">Ritika</span>.)</p>
+
+        <form class="gate__form" id="gateForm" autocomplete="off">
+          <label class="gate__label" for="gateName">Name</label>
+          <input
+            class="gate__input"
+            id="gateName"
+            name="name"
+            type="text"
+            inputmode="text"
+            placeholder="Type here…"
+            required
+          />
+          <button class="btn btn--yes gate__btn" type="submit">Enter</button>
+          <p class="gate__error" id="gateError" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+
+    <main class="wrap" id="app" hidden>
       <header class="hero">
         <div class="hero__copy">
           <h1 class="title">

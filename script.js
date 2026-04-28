@@ -260,6 +260,75 @@ async function buildGalleryTiles() {
   }
 }
 
+function wireGate() {
+  const gate = document.getElementById("gate");
+  const app = document.getElementById("app");
+  const form = document.getElementById("gateForm");
+  const input = document.getElementById("gateName");
+  const error = document.getElementById("gateError");
+  const panel = document.querySelector(".gate__panel");
+
+  if (!gate || !app || !form || !input || !error || !panel) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const expected = (params.get("key") ?? "ritika").trim().toLowerCase();
+  const saved = (localStorage.getItem("gateName") ?? "").trim().toLowerCase();
+  const fromURL = (params.get("name") ?? "").trim().toLowerCase();
+
+  const unlock = (nameValue) => {
+    gate.hidden = true;
+    gate.setAttribute("aria-hidden", "true");
+
+    app.hidden = false;
+
+    const target = document.getElementById("nameTarget");
+    if (target && nameValue) target.textContent = nameValue;
+
+    if (nameValue) localStorage.setItem("gateName", nameValue);
+  };
+
+  const tryAuto = () => {
+    if (fromURL && fromURL === expected) {
+      unlock(params.get("name") || "Ritika");
+      return true;
+    }
+    if (saved && saved === expected) {
+      unlock("Ritika");
+      return true;
+    }
+    return false;
+  };
+
+  if (tryAuto()) return;
+
+  app.hidden = true;
+  gate.hidden = false;
+  gate.setAttribute("aria-hidden", "false");
+
+  input.value = "";
+  input.focus();
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const value = (input.value ?? "").trim();
+    const normalized = value.toLowerCase();
+
+    if (normalized === expected) {
+      error.textContent = "";
+      unlock(value);
+      return;
+    }
+
+    error.textContent = "Not you. Try again.";
+    panel.classList.remove("isWrong");
+    // retrigger animation
+    // eslint-disable-next-line no-unused-expressions
+    panel.offsetWidth;
+    panel.classList.add("isWrong");
+    input.select();
+  });
+}
+
 function wireLightbox() {
   const lightbox = document.getElementById("lightbox");
   const closeBtn = document.getElementById("lightboxClose");
@@ -321,6 +390,7 @@ function wireLightbox() {
 wireNoButton();
 wireYesButton();
 applyPersonalizationFromURL();
+wireGate();
 buildGalleryTiles().then(() => {
   styleGalleryWall();
 });
