@@ -100,6 +100,9 @@ function wireYesButton() {
   const loveModalX = document.getElementById("loveModalX");
   const loveHerImg = document.getElementById("loveHerImg");
   const loveMineImg = document.getElementById("loveMineImg");
+  const celebrateLayer = document.getElementById("celebrate");
+  let celebrationTimer = null;
+  let celebrationStopTimer = null;
 
   if (!yesBtn || !reveal || !askCard || !loveModal || !loveModalClose || !loveModalX) return;
 
@@ -124,6 +127,11 @@ function wireYesButton() {
       loveModal.setAttribute("aria-hidden", "true");
       document.removeEventListener("keydown", onKeyDown);
       if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
+
+      if (celebrationTimer) window.clearInterval(celebrationTimer);
+      if (celebrationStopTimer) window.clearTimeout(celebrationStopTimer);
+      celebrationTimer = null;
+      celebrationStopTimer = null;
     };
 
     const onKeyDown = (event) => {
@@ -151,8 +159,61 @@ function wireYesButton() {
       { duration: 420, easing: "cubic-bezier(.2,.8,.2,1)" },
     );
 
+    if (celebrateLayer) {
+      if (celebrationTimer) window.clearInterval(celebrationTimer);
+      if (celebrationStopTimer) window.clearTimeout(celebrationStopTimer);
+
+      burstLove(celebrateLayer);
+      celebrationTimer = window.setInterval(() => burstLove(celebrateLayer), 650);
+      celebrationStopTimer = window.setTimeout(() => {
+        if (celebrationTimer) window.clearInterval(celebrationTimer);
+        celebrationTimer = null;
+      }, 9000);
+    }
     void openModal();
   });
+}
+
+function burstLove(layer) {
+  if (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) return;
+
+  const emojis = ["💗", "💖", "💘", "🌸", "🌷", "💐"];
+  const count = 42;
+
+  for (let i = 0; i < count; i += 1) {
+    const el = document.createElement("div");
+    const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+    const isHeart = emoji.includes("💗") || emoji.includes("💖") || emoji.includes("💘");
+
+    el.className = `petal ${isHeart ? "petal--heart" : "petal--flower"}`;
+    el.textContent = emoji;
+
+    const x = `${Math.random() * 100}vw`;
+    const x2 = `${Math.random() * 100}vw`;
+    const s = `${18 + Math.random() * 18}px`;
+    const d = `${1400 + Math.random() * 1400}ms`;
+    const r = `${(Math.random() * 520 - 260).toFixed(0)}deg`;
+    const m = `${(Math.random() * 60 - 30).toFixed(0)}px`;
+    const delay = `${Math.random() * 200}ms`;
+
+    el.style.setProperty("--x", x);
+    el.style.setProperty("--x2", x2);
+    el.style.setProperty("--s", s);
+    el.style.setProperty("--d", d);
+    el.style.setProperty("--r", r);
+    el.style.setProperty("--m", m);
+    el.style.animationDelay = delay;
+
+    el.addEventListener(
+      "animationend",
+      () => {
+        el.remove();
+      },
+      { once: true },
+    );
+
+    layer.appendChild(el);
+  }
 }
 
 async function loadDataSrcImages() {
@@ -194,6 +255,12 @@ function applyPersonalizationFromURL() {
   if (message) {
     const custom = document.getElementById("customMessage");
     if (custom) custom.textContent = message;
+  }
+
+  const proposal = params.get("proposal");
+  if (proposal) {
+    const proposalText = document.getElementById("proposalText");
+    if (proposalText) proposalText.textContent = proposal;
   }
 }
 
