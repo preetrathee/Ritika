@@ -95,8 +95,46 @@ function wireYesButton() {
   const yesBtn = document.getElementById("yesBtn");
   const reveal = document.getElementById("reveal");
   const askCard = document.querySelector(".ask");
+  const loveModal = document.getElementById("loveModal");
+  const loveModalClose = document.getElementById("loveModalClose");
+  const loveModalX = document.getElementById("loveModalX");
+  const loveHerImg = document.getElementById("loveHerImg");
+  const loveMineImg = document.getElementById("loveMineImg");
 
-  if (!yesBtn || !reveal || !askCard) return;
+  if (!yesBtn || !reveal || !askCard || !loveModal || !loveModalClose || !loveModalX) return;
+
+  const ensureLoaded = async (img) => {
+    if (!img) return;
+    const desired = img.getAttribute("data-src");
+    if (!desired) return;
+    const result = await setFirstWorkingSrc(img, desired);
+    if (result.ok) img.removeAttribute("data-src");
+  };
+
+  const openModal = async () => {
+    await Promise.all([ensureLoaded(loveHerImg), ensureLoaded(loveMineImg)]);
+
+    loveModal.hidden = false;
+    loveModal.setAttribute("aria-hidden", "false");
+
+    const previouslyFocused = document.activeElement;
+
+    const close = () => {
+      loveModal.hidden = true;
+      loveModal.setAttribute("aria-hidden", "true");
+      document.removeEventListener("keydown", onKeyDown);
+      if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
+    };
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") close();
+    };
+
+    loveModalClose.onclick = close;
+    loveModalX.onclick = close;
+    document.addEventListener("keydown", onKeyDown);
+    loveModalX.focus();
+  };
 
   yesBtn.addEventListener("click", () => {
     askCard.setAttribute("aria-hidden", "true");
@@ -112,6 +150,8 @@ function wireYesButton() {
       ],
       { duration: 420, easing: "cubic-bezier(.2,.8,.2,1)" },
     );
+
+    void openModal();
   });
 }
 

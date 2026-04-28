@@ -483,5 +483,50 @@
         <figcaption class="lightbox__caption" id="lightboxCaption"></figcaption>
       </figure>
     </div>
+
+    <div class="modal" id="loveModal" hidden aria-hidden="true">
+      <button class="modal__backdrop" type="button" id="loveModalClose">
+        <span class="srOnly">Close</span>
+      </button>
+      <section
+        class="modal__panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="loveModalTitle"
+      >
+        <button class="modal__x" type="button" id="loveModalX">
+          <span class="srOnly">Close</span>
+          ×
+        </button>
+        <h2 class="modal__title" id="loveModalTitle">Yay! It’s a date.</h2>
+        <p class="modal__hint">Now it’s officially <span class="heartWord">us</span>.</p>
+
+        <div class="loveRow" aria-label="Us">
+          <figure class="loveRow__photo">
+            <img
+              id="loveHerImg"
+              src="assets/placeholder.svg"
+              data-src="assets/her.jpg"
+              alt="Her photo"
+              decoding="async"
+            />
+            <figcaption>you</figcaption>
+          </figure>
+
+          <div class="loveRow__heart" aria-hidden="true"></div>
+
+          <figure class="loveRow__photo">
+            <img
+              id="loveMineImg"
+              src="assets/placeholder.svg"
+              data-src="assets/mine.jpg"
+              alt="My photo"
+              decoding="async"
+            />
+            <figcaption>me</figcaption>
+          </figure>
+        </div>
+      </section>
+    </div>
   </body>
 </html>
